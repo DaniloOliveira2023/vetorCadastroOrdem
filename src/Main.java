@@ -1,7 +1,3 @@
-import com.sun.source.tree.ArrayAccessTree;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -70,12 +66,24 @@ public class Main {
         return 0;
     }
 
-    public  static void exibirVetor(double valores[] ){
-
+    public static void exibirVetor(double valores[] ){
+        valores = ordenador(valores);
         for(int i =0; i<posicoesPreenchidas;i++){
-            Arrays.sort(valores);
             System.out.println("Posição:"+(i+1)+ " Numero:+"+valores[i]);
         }
     }
 
+    private static double[] ordenador (double[] valores) {
+        double auxiliar = 0;
+        for (int i=0; i<posicoesPreenchidas; i++) {
+            for (int j=0; j<posicoesPreenchidas-1; j++) {
+                if (valores[j+1] < valores[j]) {
+                    auxiliar = valores[j+1];
+                    valores[j+1] = valores[j];
+                    valores[j] = auxiliar;
+                }
+            }
+        }
+        return valores;
+    }
 }
